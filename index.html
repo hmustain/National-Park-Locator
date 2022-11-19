@@ -5,17 +5,24 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+                    <!-- Compiled and minified CSS link -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
     <link rel="stylesheet" href="./assets/styles.css" />
     <title>National Park Locator</title>
 </head>
+
 <header class="header">
     <img src="https://d368g9lw5ileu7.cloudfront.net/races/races-104xxx/104475/raceBanner-1wkBBKGv-bF32-Z.png"
         alt="A sunset at Big Bend National Park in West Texas" />
     <h1 id="header-text">National Parks Locator</h1>
 </header>
+
 <body>
-    <section>
-        <div class="card">
+                    <!-- Materialize code making the two cards a row-->
+    <div class = "row">
+                    <!-- Materalize code to tell how much of the row the card takes and adding a hover effect"col s4 hoverable" -->
+        <div class="col s4 hoverable" id = "card">
             <h3 class="card-header">National Park Search</h3>
             <form id="park-form" class="card-body">
                 <input type="text" id="state-name" class="form-input" placeholder="Enter your state to view parks" />
@@ -24,6 +31,41 @@
                     <!-- this is where prev parks should dynamically start to appear using java script -->
                 </ul>
             </form>
+            <div id="park-map-container">
+                <h3>Map</h3>
+                <img src="" alt="" id="park-map">
+            </div>
         </div>
-    </section>
+                    <!-- Side card  -->
+                    <!-- Materialize code adding a color "teal lighten-2" -->
+        <div class = "col s8 teal lighten-2 hoverable" id = "park-name-container">
+            <h3 id ="park-name">Park Name</h3>
+                    <!-- Services Icon - commented out until needed -->
+            <div id="icon-container">
+                <div class="icons" id="icon-1">
+                    <h3 id = "icon-1-service">Camping</h3>
+                    <img src=""  alt="" id = "icon-1-img">
+                </div>
+                <div class="icons" id="icon-2">
+                    <h3 id = "icon-2-service">Fishing</h3>
+                    <img src=""  alt="" id = "icon-2-img">
+                </div>
+                <div class="icons" id="icon-3">
+                    <h3 id = "icon-3-service">Hiking</h3>
+                    <img src=""  alt="" id = "icon-3-img">
+                </div>
+                </div>
+                <div id="park-discription-container">
+                    <h3>Park Discription</h3>
+                    <div id="text-discription-container">
+                        <div id="text-discription"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+<script src="./assets/script.js"></script>
 </body>
+</html>
