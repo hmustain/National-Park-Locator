@@ -62,7 +62,7 @@ var searchSubmit = function (event) {
 
   stateInput = stateSearchEl.value.trim();
   console.log(stateInput)
-  stateInput = text.toLowerCase();
+  lowerState = stateInput.toLowerCase();
   console.log(stateInput)
 
   if (stateInput) {
