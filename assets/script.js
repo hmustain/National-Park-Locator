@@ -4,69 +4,69 @@ var searchButtonEl = document.querySelector('#parksearchbtn');
 // var mapboxAPIKey = apiKey.mapboxAPIKey
 // var npsAPIKey = apiKey.npsAPIKey
 var stateList = {
-  'Arizona': 'AZ',
-  'Alabama': 'AL',
-  'Alaska': 'AK',
-  'Arkansas': 'AR',
-  'California': 'CA',
-  'Colorado': 'CO',
-  'Connecticut': 'CT',
-  'Delaware': 'DE',
-  'Florida': 'FL',
-  'Georgia': 'GA',
-  'Hawaii': 'HI',
-  'Idaho': 'ID',
-  'Illinois': 'IL',
-  'Indiana': 'IN',
-  'Iowa': 'IA',
-  'Kansas': 'KS',
-  'Kentucky': 'KY',
-  'Louisiana': 'LA',
-  'Maine': 'ME',
-  'Maryland': 'MD',
-  'Massachusetts': 'MA',
-  'Michigan': 'MI',
-  'Minnesota': 'MN',
-  'Mississippi': 'MS',
-  'Missouri': 'MO',
-  'Montana': 'MT',
-  'Nebraska': 'NE',
-  'Nevada': 'NV',
-  'New Hampshire': 'NH',
-  'New Jersey': 'NJ',
-  'New Mexico': 'NM',
-  'New York': 'NY',
-  'North Carolina': 'NC',
-  'North Dakota': 'ND',
-  'Ohio': 'OH',
-  'Oklahoma': 'OK',
-  'Oregon': 'OR',
-  'Pennsylvania': 'PA',
-  'Rhode Island': 'RI',
-  'South Carolina': 'SC',
-  'South Dakota': 'SD',
-  'Tennessee': 'TN',
-  'Texas': 'TX',
-  'Utah': 'UT',
-  'Vermont': 'VT',
-  'Virginia': 'VA',
-  'Washington': 'WA',
-  'West Virginia': 'WV',
-  'Wisconsin': 'WI',
-  'Wyoming': 'WY'
+  'arizona': 'az',
+  'alabama': 'al',
+  'alaska': 'ak',
+  'arkansas': 'ar',
+  'california': 'ca',
+  'colorado': 'co',
+  'connecticut': 'ct',
+  'delaware': 'de',
+  'florida': 'fl',
+  'georgia': 'ga',
+  'hawaii': 'hi',
+  'idaho': 'id',
+  'illinois': 'il',
+  'indiana': 'in',
+  'iowa': 'ia',
+  'kansas': 'ks',
+  'kentucky': 'ky',
+  'louisiana': 'la',
+  'maine': 'me',
+  'maryland': 'md',
+  'massachusetts': 'ma',
+  'michigan': 'mi',
+  'minnesota': 'mn',
+  'mississippi': 'ms',
+  'missouri': 'mo',
+  'montana': 'mt',
+  'nebraska': 'ne',
+  'nevada': 'nv',
+  'new Hampshire': 'nh',
+  'new Jersey': 'nj',
+  'new Mexico': 'nm',
+  'new York': 'ny',
+  'north Carolina': 'nc',
+  'north Dakota': 'nd',
+  'ohio': 'oh',
+  'oklahoma': 'ok',
+  'oregon': 'or',
+  'pennsylvania': 'pa',
+  'rhode Island': 'ri',
+  'south Carolina': 'sc',
+  'south Dakota': 'sd',
+  'tennessee': 'tn',
+  'texas': 'tx',
+  'utah': 'ut',
+  'vermont': 'vt',
+  'virginia': 'va',
+  'washington': 'wa',
+  'west Virginia': 'wv',
+  'wisconsin': 'wi',
+  'wyoming': 'wy'
 }
 
-// Gathers users search parameter
+// Gathers users search parameter and converts to lowercase
 var searchSubmit = function (event) {
   event.preventDefault();
 
   stateInput = stateSearchEl.value.trim();
-  console.log(stateInput)
+  console.log(stateInput);
   lowerState = stateInput.toLowerCase();
-  console.log(stateInput)
+  console.log(lowerState);
 
-  if (stateInput) {
-    getStateCode(stateInput);
+  if (lowerState) {
+    getStateCode(lowerState);
     stateSearchEl.value = '';
   } else {
     alert('Please enter a state');
