@@ -1,16 +1,18 @@
 :root {
     --primary: #2c2416;
     --secondary: #baa378;
+    --light: #f4ebde;
     --border-radius: 0.3rem;
 }
 
 * {
     padding: 0;
     margin: 0;
+    box-sizing: 0;
 }
 
 body {
-    /* background-color: var(--secondary); */
+    background-color: var(--light);
 }
 
 .header {
@@ -26,7 +28,8 @@ body {
     left: 50%;
     transform: translate(-50%, -50%);
     font-size: 500%;
-    color: black;
+    color: var(--primary);
+    /* border-bottom: 3px solid var(--primary); */
 }
 
 .header img {
@@ -36,20 +39,24 @@ body {
     border-bottom: 3px solid black;
 }
 
-.card {
-    margin: 3rem;
+#card {
+    margin-top: 5%;
+    margin-bottom: 5%;
     border: 3px solid var(--primary);
     border-radius: var(--border-radius);
-    width: 35%;
+    width: 100%;
+    padding: 0%;
   }
 
   .card-header {
     color: var(--secondary);
     background-color: var(--primary);
     padding: 2.5%;
+    margin: 0%;
     border-radius: calc(0.18rem - 1px) calc(0.18rem - 1px) 0 0;
     text-align: center;
     font-size: 200%;
+    /* width: 100%; */
   }
 
   .card-body {
@@ -62,22 +69,28 @@ body {
   display: block;
 }
 
-.form-input {
-    width: 93.5%;
-    padding: 3%;
+::placeholder {
+    color: var(--primary);
+    opacity: 1;
+}
+
+#state-name{
+    width: 100%;
+    /* padding: 3%; */
     margin: 5px 0;
     font-size: 1.2rem;
     border: 2px solid var(--primary);
     border-radius: var(--border-radius);
+    text-align: center;
   }
 
   .btn {
     font-size: 1.3rem;
     text-decoration: none;
-    padding: 6px 5px;
+    /* padding: 6px 5px; */
     width: 100%;
     display: block;
-    margin: 5px 0;
+    margin: 10px 0;
     border-radius: var(--border-radius);
     color: var(--secondary);
     border: none;
@@ -101,5 +114,11 @@ body {
   
   .btn-inline {
     display: inline;
+  }
+
+  #park-name-container {
+    background-color: var(--primary);
+    color: var(--secondary);
+
   }
 
