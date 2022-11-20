@@ -2,7 +2,12 @@ var stateInput;
 var stateSearchEl = document.getElementById('state-name');
 var searchButtonEl = document.querySelector('#parksearchbtn');
 // var mapboxAPIKey = apiKey.mapboxAPIKey
-var npsAPIKey = apiKey.npsAPIKey
+// var npsAPIKey = apiKey.npsAPIKey
+
+var apiKey = "NY4tbVheCsm7Lqu2d87KRiybr7CcRPaAERNqOpKA";
+  ​
+  ​
+  
 
 // Gathers users search parameter and converts to lowercase
 var searchSubmit = function (event) {
