@@ -94,8 +94,7 @@ var getParkList = function (abbr) {
         console.log(response);
         response.json().then(function (data) {
           console.log(data);
-          // displayRepos(data, user);
-          console.log(data.states)
+          getInfo(data);
         });
       } else {
         alert('Error: ' + response.statusText);
@@ -104,9 +103,25 @@ var getParkList = function (abbr) {
     .catch(function (error) {
       alert('Unable to connect to National Park Service');
     });
-    
+  var getInfo = function (data) {
+    var parkName = document.getElementById('park-name');
+    var parkDesc = document.getElementById('text-description');
+
+    console.log(data.data[2].name);
+    parkName.textContent = data.data[2].name;
+    parkDesc.textContent = data.data[2].description;
+
+  };
 };
 
+// var getInfo = function (data) {
+// var parkName = document.getElementById('park-name');
+// var parkDesc = document.getElementById('text-description');
 
+// console.log(data[0].name);
+// parkName.textContent = data[0].name;
+// parkDesc.textContent = data[0].description;
+
+// };
 
 searchButtonEl.addEventListener('click', searchSubmit);
