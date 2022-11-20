@@ -4,7 +4,7 @@ var searchButtonEl = document.querySelector('#parksearchbtn');
 // var mapboxAPIKey = apiKey.mapboxAPIKey
 // var npsAPIKey = apiKey.npsAPIKey
 
-var apiKey = "NY4tbVheCsm7Lqu2d87KRiybr7CcRPaAERNqOpKA";
+
   ​
   ​
   
