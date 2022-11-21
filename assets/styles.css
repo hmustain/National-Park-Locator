@@ -36,11 +36,11 @@ body {
     border-bottom: 3px solid black;
 }
 
-.card {
-    margin: 3rem;
+#card {
+    /* margin: 3rem; */
     border: 3px solid var(--primary);
     border-radius: var(--border-radius);
-    width: 35%;
+    /* width: 35%; */
   }
 
   .card-header {
