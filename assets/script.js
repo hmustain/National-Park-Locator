@@ -127,8 +127,13 @@ var getParkList = function (abbr) {
     console.log(data.data[2].name);
     parkName.textContent = data.data[2].fullName;
     parkDesc.textContent = data.data[2].description;
-    // parkUrl.textContent = data.data[2].url;
+    parkUrl.textContent = data.data[2].fullName;
     parkUrl.href = data.data[2].url;
+    parkUrl2.textContent = data.data[3].fullName;
+    parkUrl2.href = data.data[3].url;
+
+
+    console.log(parkUrl);
     // parkUrl.a = data.data[2].url;
     parkImage.src = data.data[2].images[0].url;
     parkImage2.src = data.data[3].images[0].url;
