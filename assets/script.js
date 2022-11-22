@@ -84,6 +84,12 @@ var getStateCode = function (state) {
   getParkList(result);
 };
 
+
+// Create the card
+var createParkCard = function(parkData) {
+
+}
+
 // Get Park listing
 var getParkList = function (abbr) {
   var apiUrl = 'https://developer.nps.gov/api/v1/parks?stateCode=' + abbr + '&api_key=' + npsAPIKey;
@@ -103,13 +109,36 @@ var getParkList = function (abbr) {
     .catch(function (error) {
       alert('Unable to connect to National Park Service');
     });
+
+
+
   var getInfo = function (data) {
     var parkName = document.getElementById('park-name');
     var parkDesc = document.getElementById('text-description');
+    var parkUrl = document.getElementById('park-url');
+    var parkImage = document.getElementById('park-image')
+
+
+    var parkName2 = document.getElementById('park-name2');
+    var parkDesc2 = document.getElementById('text-description2');
+    var parkUrl2 = document.getElementById('park-url2');
+    var parkImage2 = document.getElementById('park-image2')
 
     console.log(data.data[2].name);
-    parkName.textContent = data.data[2].name;
+    parkName.textContent = data.data[2].fullName;
     parkDesc.textContent = data.data[2].description;
+    // parkUrl.textContent = data.data[2].url;
+    parkUrl.href = data.data[2].url;
+    // parkUrl.a = data.data[2].url;
+    parkImage.src = data.data[2].images[0].url;
+    parkImage2.src = data.data[3].images[0].url;
+    console.log(parkImage2);
+
+    console.log(data.data[3].name);
+    parkName2.textContent = data.data[3].fullName;
+    parkDesc2.textContent = data.data[3].description;
+    // parkUrl2.textContent = data.data[3].url;
+    // parkUrl2.href = data.data[3].url;
 
   };
 };
