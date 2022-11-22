@@ -106,7 +106,7 @@ var getParkList = function (abbr) {
   var getInfo = function (data) {
     var parkName = document.getElementById('park-name');
     var parkDesc = document.getElementById('text-description');
-
+    console.log(data.data[3].image[1].url);
     console.log(data.data[2].name);
     parkName.textContent = data.data[2].name;
     parkDesc.textContent = data.data[2].description;
