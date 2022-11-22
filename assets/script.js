@@ -4,10 +4,12 @@ var searchButtonEl = document.querySelector('#parksearchbtn');
 // var mapboxAPIKey = apiKey.mapboxAPIKey
 var npsAPIKey = apiKey.npsAPIKey
 
+var parkContainer =document.getElementById('park-container');
+
 // Gathers users search parameter and converts to lowercase
 var searchSubmit = function (event) {
   event.preventDefault();
-
+  parkContainer.innerHTML = "";
   stateInput = stateSearchEl.value.trim();
   console.log(stateInput);
   lowerState = stateInput.toLowerCase();
@@ -88,6 +90,7 @@ var getStateCode = function (state) {
 
 // Get Park listing
 var getParkList = function (abbr) {
+  console.log(abbr);
   var apiUrl = 'https://developer.nps.gov/api/v1/parks?stateCode=' + abbr + '&api_key=' + npsAPIKey;
 
   fetch(apiUrl)
@@ -130,7 +133,7 @@ var createParkCard = function (parkData) {
 
     var parkImg = document.createElement('img');
     parkImg.setAttribute('src', parkData.data[i].images[0].url);
-    parkImg.setAttribute('style', 'width:515px height:345px' );
+    parkImg.setAttribute('style', 'width:100%; height:345px;');
     parkImgDiv.appendChild(parkImg);
 
     var parkName = document.createElement('span');
@@ -152,60 +155,10 @@ var createParkCard = function (parkData) {
 
     var parkUrl = document.createElement('a')
     parkUrl.setAttribute('href', parkData.data[i].url);
-    parkUrl.textContent = parkData.data[i].fullName + "Website";
+    parkUrl.textContent = parkData.data[i].fullName + " Website";
     parkLink.appendChild(parkUrl);
 
   }
 };
-
-//   var getInfo = function (data) {
-//     // park 1 card
-//     var parkName = document.getElementById('park-name');
-//     var parkDesc = document.getElementById('text-description');
-//     var parkUrl = document.getElementById('park-url');
-//     var parkImage = document.getElementById('park-image')
-
-// // park 2 card
-//     var parkName2 = document.getElementById('park-name2');
-//     var parkDesc2 = document.getElementById('text-description2');
-//     var parkUrl2 = document.getElementById('park-url2');
-//     var parkImage2 = document.getElementById('park-image2')
-
-//     // console.log(data.data[2].name);
-//     // park 1 getting data to show up in browser
-//     parkName.textContent = data.data[2].fullName;
-//     parkDesc.textContent = data.data[2].description;
-//     parkUrl.textContent = data.data[2].fullName;
-//     parkUrl.href = data.data[2].url;
-//     parkImage.src = data.data[2].images[0].url;
-
-//     // console logs 
-//     console.log(parkUrl);
-//     // parkUrl.a = data.data[2].url;
-//     console.log(parkImage2);
-//     console.log(data.data[3].name);
-
-//     //park 2 getting data to show up in browser
-//     parkName2.textContent = data.data[3].fullName;
-//     parkDesc2.textContent = data.data[3].description;
-//     parkUrl2.textContent = data.data[3].fullName;
-//     parkUrl2.href = data.data[3].url;
-//     parkImage2.src = data.data[3].images[0].url;
-
-//     // parkUrl2.textContent = data.data[3].url;
-//     // parkUrl2.href = data.data[3].url;
-
-//   };
-// };
-
-// var getInfo = function (data) {
-// var parkName = document.getElementById('park-name');
-// var parkDesc = document.getElementById('text-description');
-
-// console.log(data[0].name);
-// parkName.textContent = data[0].name;
-// parkDesc.textContent = data[0].description;
-
-// };
 
 searchButtonEl.addEventListener('click', searchSubmit);
