@@ -4,10 +4,12 @@ var searchButtonEl = document.querySelector('#parksearchbtn');
 // var mapboxAPIKey = apiKey.mapboxAPIKey
 var npsAPIKey = apiKey.npsAPIKey
 
+var parkContainer =document.getElementById('park-container');
+
 // Gathers users search parameter and converts to lowercase
 var searchSubmit = function (event) {
   event.preventDefault();
-
+  parkContainer.innerHTML = "";
   stateInput = stateSearchEl.value.trim();
   console.log(stateInput);
   lowerState = stateInput.toLowerCase();
@@ -84,8 +86,11 @@ var getStateCode = function (state) {
   getParkList(result);
 };
 
+
+
 // Get Park listing
 var getParkList = function (abbr) {
+  console.log(abbr);
   var apiUrl = 'https://developer.nps.gov/api/v1/parks?stateCode=' + abbr + '&api_key=' + npsAPIKey;
 
   fetch(apiUrl)
@@ -94,7 +99,7 @@ var getParkList = function (abbr) {
         console.log(response);
         response.json().then(function (data) {
           console.log(data);
-          getInfo(data);
+          createParkCard(data);
         });
       } else {
         alert('Error: ' + response.statusText);
@@ -102,26 +107,58 @@ var getParkList = function (abbr) {
     })
     .catch(function (error) {
       alert('Unable to connect to National Park Service');
-    });
-  var getInfo = function (data) {
-    var parkName = document.getElementById('park-name');
-    var parkDesc = document.getElementById('text-description');
-
-    console.log(data.data[2].name);
-    parkName.textContent = data.data[2].name;
-    parkDesc.textContent = data.data[2].description;
-
-  };
+    })
 };
 
-// var getInfo = function (data) {
-// var parkName = document.getElementById('park-name');
-// var parkDesc = document.getElementById('text-description');
+// Create the card
+var createParkCard = function (parkData) {
+  for (let i = 0; i < parkData.data.length; i++) {
 
-// console.log(data[0].name);
-// parkName.textContent = data[0].name;
-// parkDesc.textContent = data[0].description;
+    var parkContainer = document.getElementById('park-container');
 
-// };
+    var divRow = document.createElement('div');
+    divRow.classList = 'row';
+    parkContainer.appendChild(divRow);
+    var divCol = document.createElement('div');
+    divCol.classList = 'col s12 m7';
+    divRow.appendChild(divCol);
+
+    var divCard = document.createElement('div');
+    divCard.classList = 'card';
+    divCol.appendChild(divCard);
+
+    var parkImgDiv = document.createElement('div');
+    parkImgDiv.classList = 'card-image';
+    divCard.appendChild(parkImgDiv);
+
+    var parkImg = document.createElement('img');
+    parkImg.setAttribute('src', parkData.data[i].images[0].url);
+    parkImg.setAttribute('style', 'width:100%; height:345px;');
+    parkImgDiv.appendChild(parkImg);
+
+    var parkName = document.createElement('span');
+    parkName.classList = 'card-title';
+    parkName.textContent = parkData.data[i].fullName;
+    parkImgDiv.appendChild(parkName);
+
+    var divText = document.createElement('div');
+    divText.classList = 'card-content';
+    divCard.appendChild(divText);
+
+    var parkDesc = document.createElement('p')
+    parkDesc.textContent = parkData.data[i].description;
+    divText.appendChild(parkDesc);
+
+    var parkLink = document.createElement('div');
+    parkLink.classList = 'card-action';
+    divCard.appendChild(parkLink);
+
+    var parkUrl = document.createElement('a')
+    parkUrl.setAttribute('href', parkData.data[i].url);
+    parkUrl.textContent = parkData.data[i].fullName + " Website";
+    parkLink.appendChild(parkUrl);
+
+  }
+};
 
 searchButtonEl.addEventListener('click', searchSubmit);
