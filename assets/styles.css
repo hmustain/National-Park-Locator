@@ -1,124 +1,131 @@
 :root {
-    --primary: #2c2416;
-    --secondary: #baa378;
-    --light: #f4ebde;
-    --border-radius: 0.3rem;
+  --primary: #2c2416;
+  --secondary: #baa378;
+  --light: #f4ebde;
+  --border-radius: 0.3rem;
 }
 
 * {
-    padding: 0;
-    margin: 0;
-    box-sizing: 0;
+  padding: 0;
+  margin: 0;
+  box-sizing: 0;
 }
 
 body {
-    background-color: var(--light);
+  background-color: var(--light);
 }
 
 .header {
-    position: relative;
-    text-align: center;
-    color: black;
+  position: relative;
+  text-align: center;
+  color: black;
 }
 
 #header-text {
-    justify-content: center;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 500%;
-    color: var(--primary);
-    /* border-bottom: 3px solid var(--primary); */
+  justify-content: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 500%;
+  color: var(--primary);
+  /* border-bottom: 3px solid var(--primary); */
 }
 
 .header img {
-    opacity: 0.65;
-    width: 100%;
-    height: 500px;
-    border-bottom: 3px solid black;
+  opacity: 0.65;
+  width: 100%;
+  height: 500px;
+  border-bottom: 3px solid black;
 }
 
 #card {
-    margin-top: 5%;
-    margin-bottom: 5%;
-    border: 3px solid var(--primary);
-    border-radius: var(--border-radius);
-    width: 100%;
-    padding: 0%;
-  }
+  margin-top: 5%;
+  margin-bottom: 5%;
+  border: 3px solid var(--primary);
+  border-radius: var(--border-radius);
+  width: 100%;
+  padding: 0%;
+}
 
-  .card-header {
-    color: var(--secondary);
-    background-color: var(--primary);
-    padding: 2.5%;
-    margin: 0%;
-    border-radius: calc(0.18rem - 1px) calc(0.18rem - 1px) 0 0;
-    text-align: center;
-    font-size: 200%;
-    /* width: 100%; */
-  }
+.card-header {
+  color: var(--secondary);
+  background-color: var(--primary);
+  padding: 2.5%;
+  margin: 0%;
+  border-radius: calc(0.18rem - 1px) calc(0.18rem - 1px) 0 0;
+  text-align: center;
+  font-size: 200%;
+  /* width: 100%; */
+}
 
-  .card-body {
-    padding: 2.5%;
-  }
+.card-body {
+  padding: 2.5%;
+}
 
-  
-.form-input
- {
+.form-input {
   display: block;
 }
 
 ::placeholder {
-    color: var(--primary);
-    opacity: 1;
+  color: var(--primary);
+  opacity: 1;
 }
 
-#state-name{
-    width: 100%;
-    /* padding: 3%; */
-    margin: 5px 0;
-    font-size: 1.2rem;
-    border: 2px solid var(--primary);
-    border-radius: var(--border-radius);
-    text-align: center;
-  }
+#state-name {
+  width: 100%;
+  /* padding: 3%; */
+  margin: 5px 0;
+  font-size: 1.2rem;
+  border: 2px solid var(--primary);
+  border-radius: var(--border-radius);
+  text-align: center;
+}
 
-  .btn {
-    font-size: 1.3rem;
-    text-decoration: none;
-    /* padding: 6px 5px; */
-    width: 100%;
-    display: block;
-    margin: 10px 0;
-    border-radius: var(--border-radius);
-    color: var(--secondary);
-    border: none;
-    outline: none;
-    background-color: var(--primary);
-    box-shadow: 3px 3px var(--secondary);
-    transform: translate(-1px, -1px);
-  }
+.btn {
+  font-size: 1.3rem;
+  text-decoration: none;
+  /* padding: 6px 5px; */
+  width: 100%;
+  display: block;
+  margin: 10px 0;
+  border-radius: var(--border-radius);
+  color: var(--secondary);
+  border: none;
+  outline: none;
+  background-color: var(--primary);
+  box-shadow: 3px 3px var(--secondary);
+  transform: translate(-1px, -1px);
+}
 
-  .btn:hover {
-    color: var(--primary);
-    background-color: var(--secondary);
-    transform: translate(0, 0);
-    box-shadow: 2px 2px var(--primary);
-    cursor: pointer;
-  }
+.btn:hover {
+  color: var(--primary);
+  background-color: var(--secondary);
+  transform: translate(0, 0);
+  box-shadow: 2px 2px var(--primary);
+  cursor: pointer;
+}
 
-  .btn:active {
-    transform: translateY(4px);
-  }
-  
-  .btn-inline {
-    display: inline;
-  }
+.btn:active {
+  transform: translateY(4px);
+}
 
-  #park-name-container {
-    background-color: var(--primary);
-    color: var(--secondary);
+.btn-inline {
+  display: inline;
+}
 
-  }
+#park-name-container {
+  background-color: var(--primary);
+  color: var(--secondary);
 
+}
+
+.card.xl {
+  height: 600px;
+}
+
+.card .card-action {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
