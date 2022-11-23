@@ -1,10 +1,10 @@
 var stateInput;
 var stateSearchEl = document.getElementById('state-name');
 var searchButtonEl = document.querySelector('#parksearchbtn');
-// var mapboxAPIKey = apiKey.mapboxAPIKey
+var mapboxAPIKey = apiKey.mapboxAPIKey
 var npsAPIKey = apiKey.npsAPIKey
-
-var parkContainer =document.getElementById('park-container');
+var mapEl = document.getElementById('park-map');
+var parkContainer = document.getElementById('park-container');
 
 // Gathers users search parameter and converts to lowercase
 var searchSubmit = function (event) {
@@ -23,6 +23,7 @@ var searchSubmit = function (event) {
   }
 };
 
+// Converts state to 2 letter abbreviation for park api search
 var getStateCode = function (state) {
   var stateList = [
     { state: 'arizona', abbr: 'az' },
@@ -86,8 +87,6 @@ var getStateCode = function (state) {
   getParkList(result);
 };
 
-
-
 // Get Park listing
 var getParkList = function (abbr) {
   console.log(abbr);
@@ -110,7 +109,15 @@ var getParkList = function (abbr) {
     })
 };
 
-// Create the card
+// Get Maps for park listings
+var getMapImgSrc = function (mapData) {
+  if (mapData.longitude === "" || mapData.latitude === "") {
+    return "https://www.knowitall.org/sites/default/files/styles/assets_detail/public/2022-03/DVQECyCX0AEHo0r.jpg.webp?itok=q0bWWVxf";
+  }
+    return "https://api.mapbox.com/styles/v1/mapbox/streets-v12/static/" + mapData.longitude + "," + mapData.latitude + ",10,0/400x400?access_token=" + mapboxAPIKey;
+  };
+
+// Create the cards
 var createParkCard = function (parkData) {
   for (let i = 0; i < parkData.data.length; i++) {
 
@@ -119,17 +126,81 @@ var createParkCard = function (parkData) {
     var divRow = document.createElement('div');
     divRow.classList = 'row';
     parkContainer.appendChild(divRow);
-    var divCol = document.createElement('div');
-    divCol.classList = 'col s12 m7';
-    divRow.appendChild(divCol);
 
-    var divCard = document.createElement('div');
-    divCard.classList = 'card';
-    divCol.appendChild(divCard);
+    // Map Cards
+    var divMapCol = document.createElement('div');
+    divMapCol.classList = 'col s6 m6 hoverable';
+    divRow.appendChild(divMapCol);
+
+    var divMapCard = document.createElement('div');
+    divMapCard.classList = 'card xl';
+    divMapCol.appendChild(divMapCard);
+
+    var mapImgDiv = document.createElement('div');
+    mapImgDiv.classList = 'card-image';
+    divMapCard.appendChild(mapImgDiv);
+
+    var mapImg = document.createElement('img');
+    mapImg.setAttribute('src', getMapImgSrc(parkData.data[i]));
+    mapImg.setAttribute('style', 'width:100%; height:345px;');
+    mapImgDiv.appendChild(mapImg);
+
+    var divMapText = document.createElement('div');
+    divMapText.classList = 'card-content';
+    divMapCard.appendChild(divMapText);
+
+    var mapAddCont = document.createElement('ul');
+    mapAddCont.setAttribute('style', 'list-style:none');
+    divMapText.appendChild(mapAddCont);
+
+    var mapAdd = document.createElement('li');
+    mapAdd.textContent = parkData.data[i].addresses[0].line1 + ", " + parkData.data[i].addresses[0].city + " " + parkData.data[i].addresses[0].stateCode + ", " + parkData.data[i].addresses[0].postalCode;
+    mapAddCont.appendChild(mapAdd);
+
+    var mapHourCont = document.createElement('ul');
+    mapHourCont.setAttribute('style', 'list-style:none');
+    divMapText.appendChild(mapHourCont);
+
+    var mapHour = document.createElement('li');
+    mapHour.textContent = "Sunday: " + parkData.data[i].operatingHours[0].standardHours.sunday;
+    mapHourCont.appendChild(mapHour);
+
+    var mapHour = document.createElement('li');
+    mapHour.textContent = "Monday: " + parkData.data[i].operatingHours[0].standardHours.monday;
+    mapHourCont.appendChild(mapHour);
+
+    var mapHour = document.createElement('li');
+    mapHour.textContent = "Tuesday: " + parkData.data[i].operatingHours[0].standardHours.tuesday;
+    mapHourCont.appendChild(mapHour);
+
+    var mapHour = document.createElement('li');
+    mapHour.textContent = "Wednesday: " + parkData.data[i].operatingHours[0].standardHours.wednesday;
+    mapHourCont.appendChild(mapHour);
+
+    var mapHour = document.createElement('li');
+    mapHour.textContent = "Thursday: " + parkData.data[i].operatingHours[0].standardHours.thursday;
+    mapHourCont.appendChild(mapHour);
+
+    var mapHour = document.createElement('li');
+    mapHour.textContent = "Friday: " + parkData.data[i].operatingHours[0].standardHours.friday;
+    mapHourCont.appendChild(mapHour);
+
+    var mapHour = document.createElement('li');
+    mapHour.textContent = "Saturday: " + parkData.data[i].operatingHours[0].standardHours.saturday;
+    mapHourCont.appendChild(mapHour);
+
+    // Park Cards
+    var divParkCol = document.createElement('div');
+    divParkCol.classList = 'col s6 m6 hoverable';
+    divRow.appendChild(divParkCol);
+
+    var divParkCard = document.createElement('div');
+    divParkCard.classList = 'card xl';
+    divParkCol.appendChild(divParkCard);
 
     var parkImgDiv = document.createElement('div');
     parkImgDiv.classList = 'card-image';
-    divCard.appendChild(parkImgDiv);
+    divParkCard.appendChild(parkImgDiv);
 
     var parkImg = document.createElement('img');
     parkImg.setAttribute('src', parkData.data[i].images[0].url);
@@ -141,23 +212,22 @@ var createParkCard = function (parkData) {
     parkName.textContent = parkData.data[i].fullName;
     parkImgDiv.appendChild(parkName);
 
-    var divText = document.createElement('div');
-    divText.classList = 'card-content';
-    divCard.appendChild(divText);
+    var divParkText = document.createElement('div');
+    divParkText.classList = 'card-content';
+    divParkCard.appendChild(divParkText);
 
     var parkDesc = document.createElement('p')
     parkDesc.textContent = parkData.data[i].description;
-    divText.appendChild(parkDesc);
+    divParkText.appendChild(parkDesc);
 
     var parkLink = document.createElement('div');
     parkLink.classList = 'card-action';
-    divCard.appendChild(parkLink);
+    divParkCard.appendChild(parkLink);
 
     var parkUrl = document.createElement('a')
     parkUrl.setAttribute('href', parkData.data[i].url);
     parkUrl.textContent = parkData.data[i].fullName + " Website";
     parkLink.appendChild(parkUrl);
-
   }
 };
 
