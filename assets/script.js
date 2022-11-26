@@ -1,3 +1,10 @@
+var selectInstances;
+
+document.addEventListener('DOMContentLoaded', function() {
+  var elems = document.querySelectorAll('select');
+  selectInstances = M.FormSelect.init(elems, {});
+});
+
 var stateInput;
 var stateSearchEl = document.getElementById('state-name');
 var searchButtonEl = document.querySelector('#parksearchbtn');
@@ -5,26 +12,33 @@ var mapboxAPIKey = apiKey.mapboxAPIKey
 var npsAPIKey = apiKey.npsAPIKey
 var mapEl = document.getElementById('park-map');
 var parkContainer = document.getElementById('park-container');
+var states = document.getElementById('states');
 
 // Gathers users search parameter and converts to lowercase
 var searchSubmit = function (event) {
   event.preventDefault();
-  parkContainer.innerHTML = "";
-  stateInput = stateSearchEl.value.trim();
-  console.log(stateInput);
-  lowerState = stateInput.toLowerCase();
-  console.log(lowerState);
+  var selectedStates = selectInstances[0].getSelectedValues();
+  console.log(selectedStates);
 
-  if (lowerState) {
-    getStateCode(lowerState);
-    stateSearchEl.value = '';
-  } else {
-    alert('Please enter a state');
-  }
+  // parkContainer.innerHTML = "";
+  // stateInput = stateSearchEl.value.trim();
+  // console.log(stateInput);
+  // lowerState = stateInput.toLowerCase();
+  // console.log(lowerState);
+
+  // if (lowerState) {
+  //   getStateCode(lowerState);
+  //   stateSearchEl.value = '';
+  // } else {
+  //   alert('Please enter a state');
+  // }
 };
 
 // Converts state to 2 letter abbreviation for park api search
-var getSelectedValues = function (instances) {
+var getStateCode = function () {
+  
+  console.log(selectedStates);
+  return selectedStates;
   // var stateList = [
   //   { state: 'arizona', abbr: 'az' },
   //   { state: 'alabama', abbr: 'al' },
@@ -129,13 +143,6 @@ var createParkCard = function (parkData) {
     divRow.classList = 'row';
     parkContainer.appendChild(divRow);
 
-    // Hunter- trying to get state headings to appear above the first cards
-    // var parkHeading = document.createElement('h1');
-    // parkHeading.classList = 'row';
-    // parkHeading.textContent = "State: " + parkData.data[i].addresses[0].stateCode;
-    // parkHeading.setAttribute('style', 'text-align: center')
-    // parkContainer.appendChild(parkHeading);
-
     // Map Cards
     var divMapCol = document.createElement('div');
     divMapCol.classList = 'col s6 m6 hoverable';
@@ -164,7 +171,6 @@ var createParkCard = function (parkData) {
 
     var mapAdd = document.createElement('li');
     mapAdd.textContent = parkData.data[i].addresses[0].line1 + ", " + parkData.data[i].addresses[0].city + " " + parkData.data[i].addresses[0].stateCode + ", " + parkData.data[i].addresses[0].postalCode;
-    mapAdd.setAttribute('style', 'font-weight: bolder');
     mapAddCont.appendChild(mapAdd);
 
     var mapHourCont = document.createElement('ul');
@@ -242,9 +248,5 @@ var createParkCard = function (parkData) {
   }
 };
 
-document.addEventListener('DOMContentLoaded', function() {
-  var elems = document.querySelectorAll('select');
-  var instances = M.instance.getSelectedValues();
-});
-// searchButtonEl.addEventListener('click', searchSubmit);
 
+searchButtonEl.addEventListener('click', searchSubmit);
