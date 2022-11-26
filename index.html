@@ -25,14 +25,22 @@
             <!-- Materalize code to tell how much of the row the card takes and adding a hover effect"col s4 hoverable" -->
             <div class="col s12" id="card">
                 <h3 class="card-header">National Park Search</h3>
-                <form id="park-form" class="card-body">
+                <!-- <form id="park-form" class="card-body">
                     <input type="text" id="state-name" class="form-input"
                         placeholder="Enter your state to view parks" />
                     <input type="submit" id="parksearchbtn" class="btn" />
                     <ul id="parks-searched" class="list-group">
-                        <!-- this is where prev parks should dynamically start to appear using java script -->
-                    </ul>
-                </form>
+                        <---this is where prev parks should dynamically start to appear using java script -->
+                    <!-- </ul>
+                </form> -->
+                <div class="input-field col s12">
+                    <select multiple>
+                      <option value="" disabled selected>Choose your state</option>
+                      <option value="al">Alabama</option>
+                      <option value="ak">Alaska</option>
+                      <option value="az">Arizona</option>
+                    </select>
+                  </div>
             </div>
             <!-- <div class="col s6 hoverable">
                 <div id="park-map-container">
@@ -48,7 +56,7 @@
             </section>
         </div>
     </div>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script src="./assets/apiKey.js"></script>
     <script src="./assets/script.js"></script>
 </body>

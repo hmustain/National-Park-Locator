@@ -204,6 +204,7 @@ var createParkCard = function (parkData) {
 
     var parkImg = document.createElement('img');
     parkImg.setAttribute('src', parkData.data[i].images[0].url);
+    parkImg.setAttribute('alt', parkData.data[i].images[0].altText);
     parkImg.setAttribute('style', 'width:100%; height:345px;');
     parkImgDiv.appendChild(parkImg);
 
@@ -231,4 +232,8 @@ var createParkCard = function (parkData) {
   }
 };
 
-searchButtonEl.addEventListener('click', searchSubmit);
+document.addEventListener('DOMContentLoaded', function() {
+  var elems = document.querySelectorAll('select');
+  var instances = M.AutoInit();
+});
+// searchButtonEl.addEventListener('click', searchSubmit);
