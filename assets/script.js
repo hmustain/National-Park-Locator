@@ -1,6 +1,6 @@
 var selectInstances;
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
   var elems = document.querySelectorAll('select');
   selectInstances = M.FormSelect.init(elems, {});
 });
@@ -21,9 +21,9 @@ var searchSubmit = function (event) {
   console.log(selectedStates);
 
   for (i = 0; i < selectedStates.length; i++) {
-  
-   getParkList(selectedStates[i]);
-    
+
+    getParkList(selectedStates[i]);
+
   }
 };
 
@@ -54,8 +54,8 @@ var getMapImgSrc = function (mapData) {
   if (mapData.longitude === "" || mapData.latitude === "") {
     return "https://www.knowitall.org/sites/default/files/styles/assets_detail/public/2022-03/DVQECyCX0AEHo0r.jpg.webp?itok=q0bWWVxf";
   }
-    return "https://api.mapbox.com/styles/v1/mapbox/streets-v12/static/" + mapData.longitude + "," + mapData.latitude + ",10,0/400x400?access_token=" + mapboxAPIKey;
-  };
+  return "https://api.mapbox.com/styles/v1/mapbox/streets-v12/static/" + mapData.longitude + "," + mapData.latitude + ",10,0/400x400?access_token=" + mapboxAPIKey;
+};
 
 // Create the cards
 var createParkCard = function (parkData) {
@@ -105,37 +105,44 @@ var createParkCard = function (parkData) {
     mapAdd.setAttribute('style', 'font-weight: bolder');
     mapAddCont.appendChild(mapAdd);
 
-    var mapHourCont = document.createElement('ul');
-    mapHourCont.setAttribute('style', 'list-style:none');
-    divMapText.appendChild(mapHourCont);
+    if (parkData.data[i].operatingHours.length === 0) {
+      var mapHour = document.createElement('p');
+      mapHour.textContent = "Please call for current hours.  " + parkData.data[i].contacts.phoneNumbers[0].phoneNumber
+      mapAddCont.appendChild(mapHour);
+    } else {
 
-    var mapHour = document.createElement('li');
-    mapHour.textContent = "Sunday: " + parkData.data[i].operatingHours[0].standardHours.sunday;
-    mapHourCont.appendChild(mapHour);
+      var mapHourCont = document.createElement('ul');
+      mapHourCont.setAttribute('style', 'list-style:none');
+      divMapText.appendChild(mapHourCont);
 
-    var mapHour = document.createElement('li');
-    mapHour.textContent = "Monday: " + parkData.data[i].operatingHours[0].standardHours.monday;
-    mapHourCont.appendChild(mapHour);
+      var mapHour = document.createElement('li');
+      mapHour.textContent = "Sunday: " + parkData.data[i].operatingHours[0].standardHours.sunday;
+      mapHourCont.appendChild(mapHour);
 
-    var mapHour = document.createElement('li');
-    mapHour.textContent = "Tuesday: " + parkData.data[i].operatingHours[0].standardHours.tuesday;
-    mapHourCont.appendChild(mapHour);
+      var mapHour = document.createElement('li');
+      mapHour.textContent = "Monday: " + parkData.data[i].operatingHours[0].standardHours.monday;
+      mapHourCont.appendChild(mapHour);
 
-    var mapHour = document.createElement('li');
-    mapHour.textContent = "Wednesday: " + parkData.data[i].operatingHours[0].standardHours.wednesday;
-    mapHourCont.appendChild(mapHour);
+      var mapHour = document.createElement('li');
+      mapHour.textContent = "Tuesday: " + parkData.data[i].operatingHours[0].standardHours.tuesday;
+      mapHourCont.appendChild(mapHour);
 
-    var mapHour = document.createElement('li');
-    mapHour.textContent = "Thursday: " + parkData.data[i].operatingHours[0].standardHours.thursday;
-    mapHourCont.appendChild(mapHour);
+      var mapHour = document.createElement('li');
+      mapHour.textContent = "Wednesday: " + parkData.data[i].operatingHours[0].standardHours.wednesday;
+      mapHourCont.appendChild(mapHour);
 
-    var mapHour = document.createElement('li');
-    mapHour.textContent = "Friday: " + parkData.data[i].operatingHours[0].standardHours.friday;
-    mapHourCont.appendChild(mapHour);
+      var mapHour = document.createElement('li');
+      mapHour.textContent = "Thursday: " + parkData.data[i].operatingHours[0].standardHours.thursday;
+      mapHourCont.appendChild(mapHour);
 
-    var mapHour = document.createElement('li');
-    mapHour.textContent = "Saturday: " + parkData.data[i].operatingHours[0].standardHours.saturday;
-    mapHourCont.appendChild(mapHour);
+      var mapHour = document.createElement('li');
+      mapHour.textContent = "Friday: " + parkData.data[i].operatingHours[0].standardHours.friday;
+      mapHourCont.appendChild(mapHour);
+
+      var mapHour = document.createElement('li');
+      mapHour.textContent = "Saturday: " + parkData.data[i].operatingHours[0].standardHours.saturday;
+      mapHourCont.appendChild(mapHour);
+    };
 
     // Park Cards
     var divParkCol = document.createElement('div');
