@@ -20,6 +20,12 @@ var searchSubmit = function (event) {
   var selectedStates = selectInstances[0].getSelectedValues();
   console.log(selectedStates);
 
+  for (i = 0; i < selectedStates.length; i++) {
+  
+   getParkList(selectedStates[i]);
+    
+  }
+
   // parkContainer.innerHTML = "";
   // stateInput = stateSearchEl.value.trim();
   // console.log(stateInput);
