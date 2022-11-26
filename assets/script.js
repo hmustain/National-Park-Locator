@@ -67,6 +67,13 @@ var createParkCard = function (parkData) {
     divRow.classList = 'row';
     parkContainer.appendChild(divRow);
 
+    // Hunter- trying to get state headings to appear above the first cards
+    // var parkHeading = document.createElement('h1');
+    // parkHeading.classList = 'row';
+    // parkHeading.textContent = "State: " + parkData.data[i].addresses[0].stateCode;
+    // parkHeading.setAttribute('style', 'text-align: center')
+    // parkContainer.appendChild(parkHeading);
+
     // Map Cards
     var divMapCol = document.createElement('div');
     divMapCol.classList = 'col s6 m6 hoverable';
@@ -95,6 +102,7 @@ var createParkCard = function (parkData) {
 
     var mapAdd = document.createElement('li');
     mapAdd.textContent = parkData.data[i].addresses[0].line1 + ", " + parkData.data[i].addresses[0].city + " " + parkData.data[i].addresses[0].stateCode + ", " + parkData.data[i].addresses[0].postalCode;
+    mapAdd.setAttribute('style', 'font-weight: bolder');
     mapAddCont.appendChild(mapAdd);
 
     var mapHourCont = document.createElement('ul');
