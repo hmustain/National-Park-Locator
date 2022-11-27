@@ -1,10 +1,4 @@
 var selectInstances;
-
-document.addEventListener('DOMContentLoaded', function () {
-  var elems = document.querySelectorAll('select');
-  selectInstances = M.FormSelect.init(elems, {});
-});
-
 var stateInput;
 var stateSearchEl = document.getElementById('state-name');
 var searchButtonEl = document.querySelector('#parksearchbtn');
@@ -14,7 +8,12 @@ var mapEl = document.getElementById('park-map');
 var parkContainer = document.getElementById('park-container');
 var states = document.getElementById('states');
 
-// Gathers users search parameter and converts to lowercase
+document.addEventListener('DOMContentLoaded', function () {
+  var elems = document.querySelectorAll('select');
+  selectInstances = M.FormSelect.init(elems, {});
+ });
+
+// Gathers users search selection
 var searchSubmit = function (event) {
   event.preventDefault();
   var selectedStates = selectInstances[0].getSelectedValues();
@@ -38,6 +37,7 @@ var getParkList = function (abbr) {
         console.log(response);
         response.json().then(function (data) {
           console.log(data);
+          createHeaders(data);
           createParkCard(data);
         });
       } else {
@@ -57,8 +57,18 @@ var getMapImgSrc = function (mapData) {
   return "https://api.mapbox.com/styles/v1/mapbox/streets-v12/static/" + mapData.longitude + "," + mapData.latitude + ",10,0/400x400?access_token=" + mapboxAPIKey;
 };
 
-// Create the cards
+// Creates the state name headers for the search results
+var createHeaders = function (parkData) {
+
+    var parkHeading = document.createElement('h2');
+    parkHeading.textContent = "State: " + parkData.data[i].addresses[0].stateCode;
+    parkHeading.setAttribute('style', 'text-align: center')
+    parkContainer.appendChild(parkHeading);
+};
+
+// Create the park and map cards
 var createParkCard = function (parkData) {
+
   for (let i = 0; i < parkData.data.length; i++) {
 
     var parkContainer = document.getElementById('park-container');
@@ -66,13 +76,6 @@ var createParkCard = function (parkData) {
     var divRow = document.createElement('div');
     divRow.classList = 'row';
     parkContainer.appendChild(divRow);
-
-    // Hunter- trying to get state headings to appear above the first cards
-    // var parkHeading = document.createElement('h1');
-    // parkHeading.classList = 'row';
-    // parkHeading.textContent = "State: " + parkData.data[i].addresses[0].stateCode;
-    // parkHeading.setAttribute('style', 'text-align: center')
-    // parkContainer.appendChild(parkHeading);
 
     // Map Cards
     var divMapCol = document.createElement('div');
