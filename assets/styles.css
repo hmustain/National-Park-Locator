@@ -162,3 +162,19 @@ body {
   bottom: 0;
   width: 100%;
 }
+
+/* Added styles for footer */
+.footer-copyright {
+  background-color: var(--primary);
+  color: var(--secondary);
+  font-size: 1.2rem;
+}
+
+#about-us {
+  color: var(--secondary);
+  text-decoration: underline;
+}
+
+#about-us:hover {
+  color: var(--light);
+}
