@@ -88,7 +88,7 @@ var createParkCard = function (parkData) {
 
     // Map Cards
     var divMapCol = document.createElement('div');
-    divMapCol.classList = 'col s6 m6 hoverable';
+    divMapCol.classList = 'col s12 m6 l6 hoverable';
     divRow.appendChild(divMapCol);
 
     var divMapCard = document.createElement('div');
@@ -158,7 +158,7 @@ var createParkCard = function (parkData) {
 
     // Park Cards
     var divParkCol = document.createElement('div');
-    divParkCol.classList = 'col s6 m6 hoverable';
+    divParkCol.classList = 'col s12 m6 l6  hoverable';
     divRow.appendChild(divParkCol);
 
     var divParkCard = document.createElement('div');
