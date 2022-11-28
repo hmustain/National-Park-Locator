@@ -3,7 +3,8 @@ var selectInstances;
 document.addEventListener('DOMContentLoaded', function () {
   var elems = document.querySelectorAll('select');
   selectInstances = M.FormSelect.init(elems, {});
- });
+});
+
 
 var stateInput;
 var stateSearchEl = document.getElementById('state-name');
@@ -55,7 +56,7 @@ var getMapImgSrc = function (mapData) {
   if (mapData.longitude === "" || mapData.latitude === "") {
     return "https://www.knowitall.org/sites/default/files/styles/assets_detail/public/2022-03/DVQECyCX0AEHo0r.jpg.webp?itok=q0bWWVxf";
   }
-  return "https://api.mapbox.com/styles/v1/mapbox/streets-v12/static/" + mapData.longitude + "," + mapData.latitude + ",10,0/400x400?access_token=" + ${{ secrets.MAP_API_KEY }};
+  return "https://api.mapbox.com/styles/v1/mapbox/streets-v12/static/" + mapData.longitude + "," + mapData.latitude + ",10,0/400x400?access_token=" + mapboxAPIKey;
 };
 
 // Creates the state name headers for the search results
@@ -77,6 +78,13 @@ var createParkCard = function (parkData) {
     var divRow = document.createElement('div');
     divRow.classList = 'row';
     parkContainer.appendChild(divRow);
+
+    // Hunter- trying to get state headings to appear above the first cards
+    // var parkHeading = document.createElement('h1');
+    // parkHeading.classList = 'row';
+    // parkHeading.textContent = "State: " + parkData.data[i].addresses[0].stateCode;
+    // parkHeading.setAttribute('style', 'text-align: center')
+    // parkContainer.appendChild(parkHeading);
 
     // Map Cards
     var divMapCol = document.createElement('div');
