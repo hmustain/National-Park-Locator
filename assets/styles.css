@@ -32,43 +32,16 @@ body {
   /* border-bottom: 3px solid var(--primary); */
 }
 
+
 .header img {
-<<<<<<< HEAD
-    opacity: 0.65;
+    opacity: 0.80;
     width: 100%;
     height: 500px;
     border-bottom: 3px solid black;
 }
 
-#card {
-    /* margin: 3rem; */
-    border: 3px solid var(--primary);
-    border-radius: var(--border-radius);
-    /* width: 35%; */
-  }
-
-  .card-header {
-    color: var(--secondary);
-    background-color: var(--primary);
-    padding: 2.5%;
-    border-radius: calc(0.18rem - 1px) calc(0.18rem - 1px) 0 0;
-    text-align: center;
-    font-size: 200%;
-  }
-
-  .card-body {
-    padding: 2.5%;
-  }
-
-  
-.form-input
- {
-  display: block;
-=======
-  opacity: 0.65;
-  width: 100%;
-  height: 500px;
-  border-bottom: 3px solid black;
+.select-wrapper input.select-dropdown {
+  text-align: center;
 }
 
 #card {
@@ -93,7 +66,6 @@ body {
 
 .card-body {
   padding: 2.5%;
->>>>>>> 4e7f18e89cd2375f4f48d26bfd2f8091a6f87e4b
 }
 
 .form-input {
@@ -131,6 +103,22 @@ body {
   transform: translate(-1px, -1px);
 }
 
+.btn::after{
+  font-size: 1.3rem;
+  text-decoration: none;
+  /* padding: 6px 5px; */
+  width: 100%;
+  display: block;
+  margin: 10px 0;
+  border-radius: var(--border-radius);
+  color: var(--secondary);
+  border: none;
+  outline: none;
+  background-color: var(--primary);
+  box-shadow: 3px 3px var(--secondary);
+  transform: translate(-1px, -1px);
+}
+
 .btn:hover {
   color: var(--primary);
   background-color: var(--secondary);
@@ -139,9 +127,14 @@ body {
   cursor: pointer;
 }
 
-.btn:active {
-  transform: translateY(4px);
-}
+  .btn:active {
+    transform: translateY(4px);
+  }
+
+  
+  .btn-inline {
+    display: inline;
+  }
 
 .btn-inline {
   display: inline;
@@ -163,18 +156,21 @@ body {
   width: 100%;
 }
 
-/* Added styles for footer */
+.row h1 {
+  /* text-align: center; */
+}
+
+/* footer styling */
 .footer-copyright {
   background-color: var(--primary);
-  color: var(--secondary);
-  font-size: 1.2rem;
 }
 
-#about-us {
+.container-footer > a {
+  margin: 10px;
   color: var(--secondary);
-  text-decoration: underline;
 }
 
-#about-us:hover {
+.container-footer > a:hover {
   color: var(--light);
+  text-decoration: underline;
 }

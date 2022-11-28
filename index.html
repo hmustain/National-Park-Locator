@@ -13,8 +13,7 @@
 </head>
 
 <header class="header">
-    <img src="https://d368g9lw5ileu7.cloudfront.net/races/races-104xxx/104475/raceBanner-1wkBBKGv-bF32-Z.png"
-        alt="A sunset at Big Bend National Park in West Texas" />
+    <img src="https://i.gifer.com/mrJ.gif" alt="A simple gif overlooking a desert canyon national park" />
     <h1 id="header-text">National Parks<br>Locator</h1>
 </header>
 
@@ -26,13 +25,68 @@
             <div class="col s12" id="card">
                 <h3 class="card-header">National Park Search</h3>
                 <form id="park-form" class="card-body">
-                    <input type="text" id="state-name" class="form-input"
-                        placeholder="Enter your state to view parks" />
+                    <!-- <input type="text" id="state-name" class="form-input"
+                        placeholder="Enter your state to view parks" /> -->
+                    <div class="input-field col s12">
+                        <select id="states" multiple>
+                            <option value="" disabled selected>Choose your state</option>
+                            <option value="al">Alabama</option>
+                            <option value="ak">Alaska</option>
+                            <option value="az">Arizona</option>
+                            <option value="ar">Arkansas</option>
+                            <option value="ca">California</option>
+                            <option value="co">Colorado</option>
+                            <option value="ct">Connecticut</option>
+                            <option value="de">Delaware</option>
+                            <option value="dc">Dist of Columbia</option>
+                            <option value="fl">Florida</option>
+                            <option value="ga">Georgia</option>
+                            <option value="hi">Hawaii</option>
+                            <option value="id">Idaho</option>
+                            <option value="il">Illinois</option>
+                            <option value="in">Indiana</option>
+                            <option value="ia">Iowa</option>
+                            <option value="ks">Kansas</option>
+                            <option value="ky">Kentucky</option>
+                            <option value="la">Louisiana</option>
+                            <option value="me">Maine</option>
+                            <option value="md">Maryland</option>
+                            <option value="ma">Massachusetts</option>
+                            <option value="mi">Michigan</option>
+                            <option value="mn">Minnesota</option>
+                            <option value="ms">Mississippi</option>
+                            <option value="mo">Missouri</option>
+                            <option value="mt">Montana</option>
+                            <option value="ne">Nebraska</option>
+                            <option value="nv">Nevada</option>
+                            <option value="nh">New Hampshire</option>
+                            <option value="nj">New Jersey</option>
+                            <option value="nm">New Mexico</option>
+                            <option value="ny">New York</option>
+                            <option value="nc">North Carolina</option>
+                            <option value="nd">North Dakota</option>
+                            <option value="oh">Ohio</option>
+                            <option value="ok">Oklahoma</option>
+                            <option value="or">Oregon</option>
+                            <option value="pa">Pennsylvania</option>
+                            <option value="ri">Rhode Island</option>
+                            <option value="sc">South Carolina</option>
+                            <option value="sd">South Dakota</option>
+                            <option value="tn">Tennessee</option>
+                            <option value="tx">Texas</option>
+                            <option value="ut">Utah</option>
+                            <option value="vt">Vermont</option>
+                            <option value="va">Virginia</option>
+                            <option value="wa">Washington</option>
+                            <option value="wv">West Virginia</option>
+                            <option value="wi">Wisconsin</option>
+                            <option value="wy">Wyoming</option>
+                        </select>
+                    </div>
+
                     <input type="submit" id="parksearchbtn" class="btn" />
-                    <ul id="parks-searched" class="list-group">
-                        <!-- this is where prev parks should dynamically start to appear using java script -->
-                    </ul>
                 </form>
+
             </div>
 
             <!-- Side card  -->
@@ -42,20 +96,15 @@
             </section>
         </div>
     </div>
-            <!-- Added Footer Footer is not covering the bottom of the page -->
-    <footer class = "footer-copyright">
-        <div class="container">
-            <div class="row">
-                <div class = "col s12">
-                    <span>Thanks to the API's of &copyNational Parks and &copyMapbox.</span>
-            <!-- Link to about us -->
-                    <!-- <a class = "right" id = "about-us" href="#!"> About Us</a> -->
-                </div>
-            </div>
+            <!-- Footer with links to APIs -->
+    <div class="footer-copyright row s12">
+        <div class="container-footer">
+            <a class="right" href="https://www.mapbox.com/">&copy;Mapbox</a>
+            <a class="right" href="https://www.nps.gov/subjects/developer/api-documentation.htm">&copy;National Parks</a>
         </div>
-    </footer>
-    
+    </div>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script src="./assets/apiKey.js"></script>
     <script src="./assets/script.js"></script>
 </body>

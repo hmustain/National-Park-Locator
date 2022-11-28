@@ -1,3 +1,10 @@
+var selectInstances;
+
+document.addEventListener('DOMContentLoaded', function () {
+  var elems = document.querySelectorAll('select');
+  selectInstances = M.FormSelect.init(elems, {});
+});
+
 var stateInput;
 var stateSearchEl = document.getElementById('state-name');
 var searchButtonEl = document.querySelector('#parksearchbtn');
@@ -5,86 +12,19 @@ var mapboxAPIKey = apiKey.mapboxAPIKey
 var npsAPIKey = apiKey.npsAPIKey
 var mapEl = document.getElementById('park-map');
 var parkContainer = document.getElementById('park-container');
+var states = document.getElementById('states');
 
 // Gathers users search parameter and converts to lowercase
 var searchSubmit = function (event) {
   event.preventDefault();
-  parkContainer.innerHTML = "";
-  stateInput = stateSearchEl.value.trim();
-  console.log(stateInput);
-  lowerState = stateInput.toLowerCase();
-  console.log(lowerState);
+  var selectedStates = selectInstances[0].getSelectedValues();
+  console.log(selectedStates);
 
-  if (lowerState) {
-    getStateCode(lowerState);
-    stateSearchEl.value = '';
-  } else {
-    alert('Please enter a state');
-  }
-};
+  for (i = 0; i < selectedStates.length; i++) {
 
-// Converts state to 2 letter abbreviation for park api search
-var getStateCode = function (state) {
-  var stateList = [
-    { state: 'arizona', abbr: 'az' },
-    { state: 'alabama', abbr: 'al' },
-    { state: 'alaska', abbr: 'ak' },
-    { state: 'arkansas', abbr: 'ar' },
-    { state: 'california', abbr: 'ca' },
-    { state: 'colorado', abbr: 'co' },
-    { state: 'connecticut', abbr: 'ct' },
-    { state: 'delaware', abbr: 'de' },
-    { state: 'florida', abbr: 'fl' },
-    { state: 'georgia', abbr: 'ga' },
-    { state: 'hawaii', abbr: 'hi' },
-    { state: 'idaho', abbr: 'id' },
-    { state: 'illinois', abbr: 'il' },
-    { state: 'indiana', abbr: 'in' },
-    { state: 'iowa', abbr: 'ia' },
-    { state: 'kansas', abbr: 'ks' },
-    { state: 'kentucky', abbr: 'ky' },
-    { state: 'louisiana', abbr: 'la' },
-    { state: 'maine', abbr: 'me' },
-    { state: 'maryland', abbr: 'md' },
-    { state: 'massachusetts', abbr: 'ma' },
-    { state: 'michigan', abbr: 'mi' },
-    { state: 'minnesota', abbr: 'mn' },
-    { state: 'mississippi', abbr: 'ms' },
-    { state: 'missouri', abbr: 'mo' },
-    { state: 'montana', abbr: 'mt' },
-    { state: 'nebraska', abbr: 'ne' },
-    { state: 'nevada', abbr: 'nv' },
-    { state: 'new hampshire', abbr: 'nh' },
-    { state: 'new jersey', abbr: 'nj' },
-    { state: 'new mexico', abbr: 'nm' },
-    { state: 'new york', abbr: 'ny' },
-    { state: 'north carolina', abbr: 'nc' },
-    { state: 'north dakota', abbr: 'nd' },
-    { state: 'ohio', abbr: 'oh' },
-    { state: 'oklahoma', abbr: 'ok' },
-    { state: 'oregon', abbr: 'or' },
-    { state: 'pennsylvania', abbr: 'pa' },
-    { state: 'rhode island', abbr: 'ri' },
-    { state: 'south carolina', abbr: 'sc' },
-    { state: 'south dakota', abbr: 'sd' },
-    { state: 'tennessee', abbr: 'tn' },
-    { state: 'texas', abbr: 'tx' },
-    { state: 'utah', abbr: 'ut' },
-    { state: 'vermont', abbr: 'vt' },
-    { state: 'virginia', abbr: 'va' },
-    { state: 'washington', abbr: 'wa' },
-    { state: 'west virginia', abbr: 'wv' },
-    { state: 'wisconsin', abbr: 'wi' },
-    { state: 'wyoming', abbr: 'wy' },
-  ];
-  var result;
-  for (i = 0; i < stateList.length; i++) {
-    if (state === stateList[i].state) {
-      result = stateList[i].abbr
-    }
+    getParkList(selectedStates[i]);
+
   }
-  console.log(result);
-  getParkList(result);
 };
 
 // Get Park listing
@@ -114,8 +54,8 @@ var getMapImgSrc = function (mapData) {
   if (mapData.longitude === "" || mapData.latitude === "") {
     return "https://www.knowitall.org/sites/default/files/styles/assets_detail/public/2022-03/DVQECyCX0AEHo0r.jpg.webp?itok=q0bWWVxf";
   }
-    return "https://api.mapbox.com/styles/v1/mapbox/streets-v12/static/" + mapData.longitude + "," + mapData.latitude + ",10,0/400x400?access_token=" + mapboxAPIKey;
-  };
+  return "https://api.mapbox.com/styles/v1/mapbox/streets-v12/static/" + mapData.longitude + "," + mapData.latitude + ",10,0/400x400?access_token=" + mapboxAPIKey;
+};
 
 // Create the cards
 var createParkCard = function (parkData) {
@@ -126,6 +66,13 @@ var createParkCard = function (parkData) {
     var divRow = document.createElement('div');
     divRow.classList = 'row';
     parkContainer.appendChild(divRow);
+
+    // Hunter- trying to get state headings to appear above the first cards
+    // var parkHeading = document.createElement('h1');
+    // parkHeading.classList = 'row';
+    // parkHeading.textContent = "State: " + parkData.data[i].addresses[0].stateCode;
+    // parkHeading.setAttribute('style', 'text-align: center')
+    // parkContainer.appendChild(parkHeading);
 
     // Map Cards
     var divMapCol = document.createElement('div');
@@ -155,39 +102,47 @@ var createParkCard = function (parkData) {
 
     var mapAdd = document.createElement('li');
     mapAdd.textContent = parkData.data[i].addresses[0].line1 + ", " + parkData.data[i].addresses[0].city + " " + parkData.data[i].addresses[0].stateCode + ", " + parkData.data[i].addresses[0].postalCode;
+    mapAdd.setAttribute('style', 'font-weight: bolder');
     mapAddCont.appendChild(mapAdd);
 
-    var mapHourCont = document.createElement('ul');
-    mapHourCont.setAttribute('style', 'list-style:none');
-    divMapText.appendChild(mapHourCont);
+    if (parkData.data[i].operatingHours.length === 0) {
+      var mapHour = document.createElement('p');
+      mapHour.textContent = "Please call for current hours.  " + parkData.data[i].contacts.phoneNumbers[0].phoneNumber
+      mapAddCont.appendChild(mapHour);
+    } else {
 
-    var mapHour = document.createElement('li');
-    mapHour.textContent = "Sunday: " + parkData.data[i].operatingHours[0].standardHours.sunday;
-    mapHourCont.appendChild(mapHour);
+      var mapHourCont = document.createElement('ul');
+      mapHourCont.setAttribute('style', 'list-style:none');
+      divMapText.appendChild(mapHourCont);
 
-    var mapHour = document.createElement('li');
-    mapHour.textContent = "Monday: " + parkData.data[i].operatingHours[0].standardHours.monday;
-    mapHourCont.appendChild(mapHour);
+      var mapHour = document.createElement('li');
+      mapHour.textContent = "Sunday: " + parkData.data[i].operatingHours[0].standardHours.sunday;
+      mapHourCont.appendChild(mapHour);
 
-    var mapHour = document.createElement('li');
-    mapHour.textContent = "Tuesday: " + parkData.data[i].operatingHours[0].standardHours.tuesday;
-    mapHourCont.appendChild(mapHour);
+      var mapHour = document.createElement('li');
+      mapHour.textContent = "Monday: " + parkData.data[i].operatingHours[0].standardHours.monday;
+      mapHourCont.appendChild(mapHour);
 
-    var mapHour = document.createElement('li');
-    mapHour.textContent = "Wednesday: " + parkData.data[i].operatingHours[0].standardHours.wednesday;
-    mapHourCont.appendChild(mapHour);
+      var mapHour = document.createElement('li');
+      mapHour.textContent = "Tuesday: " + parkData.data[i].operatingHours[0].standardHours.tuesday;
+      mapHourCont.appendChild(mapHour);
 
-    var mapHour = document.createElement('li');
-    mapHour.textContent = "Thursday: " + parkData.data[i].operatingHours[0].standardHours.thursday;
-    mapHourCont.appendChild(mapHour);
+      var mapHour = document.createElement('li');
+      mapHour.textContent = "Wednesday: " + parkData.data[i].operatingHours[0].standardHours.wednesday;
+      mapHourCont.appendChild(mapHour);
 
-    var mapHour = document.createElement('li');
-    mapHour.textContent = "Friday: " + parkData.data[i].operatingHours[0].standardHours.friday;
-    mapHourCont.appendChild(mapHour);
+      var mapHour = document.createElement('li');
+      mapHour.textContent = "Thursday: " + parkData.data[i].operatingHours[0].standardHours.thursday;
+      mapHourCont.appendChild(mapHour);
 
-    var mapHour = document.createElement('li');
-    mapHour.textContent = "Saturday: " + parkData.data[i].operatingHours[0].standardHours.saturday;
-    mapHourCont.appendChild(mapHour);
+      var mapHour = document.createElement('li');
+      mapHour.textContent = "Friday: " + parkData.data[i].operatingHours[0].standardHours.friday;
+      mapHourCont.appendChild(mapHour);
+
+      var mapHour = document.createElement('li');
+      mapHour.textContent = "Saturday: " + parkData.data[i].operatingHours[0].standardHours.saturday;
+      mapHourCont.appendChild(mapHour);
+    };
 
     // Park Cards
     var divParkCol = document.createElement('div');
@@ -204,6 +159,7 @@ var createParkCard = function (parkData) {
 
     var parkImg = document.createElement('img');
     parkImg.setAttribute('src', parkData.data[i].images[0].url);
+    parkImg.setAttribute('alt', parkData.data[i].images[0].altText);
     parkImg.setAttribute('style', 'width:100%; height:345px;');
     parkImgDiv.appendChild(parkImg);
 
@@ -230,5 +186,6 @@ var createParkCard = function (parkData) {
     parkLink.appendChild(parkUrl);
   }
 };
+
 
 searchButtonEl.addEventListener('click', searchSubmit);
