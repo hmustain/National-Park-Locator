@@ -5,16 +5,17 @@ document.addEventListener('DOMContentLoaded', function () {
   selectInstances = M.FormSelect.init(elems, {});
 });
 
+
 var stateInput;
 var stateSearchEl = document.getElementById('state-name');
 var searchButtonEl = document.querySelector('#parksearchbtn');
-var mapboxAPIKey = apiKey.mapboxAPIKey
-var npsAPIKey = apiKey.npsAPIKey
+var mapboxAPIKey = "pk.eyJ1IjoiaG11c3RhaW4iLCJhIjoiY2xhajR1ODl2MDlhZzNybGY0aTU5emp0ZCJ9.2qOaknYc9ioiQbeuM_QbNg";
+var npsAPIKey = "NY4tbVheCsm7Lqu2d87KRiybr7CcRPaAERNqOpKA";
 var mapEl = document.getElementById('park-map');
 var parkContainer = document.getElementById('park-container');
 var states = document.getElementById('states');
 
-// Gathers users search parameter and converts to lowercase
+// Gathers users search selection
 var searchSubmit = function (event) {
   event.preventDefault();
   var selectedStates = selectInstances[0].getSelectedValues();
@@ -38,6 +39,7 @@ var getParkList = function (abbr) {
         console.log(response);
         response.json().then(function (data) {
           console.log(data);
+          createHeaders(data);
           createParkCard(data);
         });
       } else {
@@ -57,8 +59,18 @@ var getMapImgSrc = function (mapData) {
   return "https://api.mapbox.com/styles/v1/mapbox/streets-v12/static/" + mapData.longitude + "," + mapData.latitude + ",10,0/400x400?access_token=" + mapboxAPIKey;
 };
 
-// Create the cards
+// Creates the state name headers for the search results
+var createHeaders = function (parkData) {
+
+    var parkHeading = document.createElement('h2');
+    parkHeading.textContent = "State: " + parkData.data[i].addresses[0].stateCode;
+    parkHeading.setAttribute('style', 'text-align: center')
+    parkContainer.appendChild(parkHeading);
+};
+
+// Create the park and map cards
 var createParkCard = function (parkData) {
+
   for (let i = 0; i < parkData.data.length; i++) {
 
     var parkContainer = document.getElementById('park-container');
