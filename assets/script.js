@@ -8,8 +8,8 @@ document.addEventListener('DOMContentLoaded', function () {
 var stateInput;
 var stateSearchEl = document.getElementById('state-name');
 var searchButtonEl = document.querySelector('#parksearchbtn');
-var mapboxAPIKey = secrets.MAP_API_KEY
-var npsAPIKey = secrets.NPS_API_KEY
+var mapboxAPIKey = "pk.eyJ1IjoiaG11c3RhaW4iLCJhIjoiY2xhajR1ODl2MDlhZzNybGY0aTU5emp0ZCJ9.2qOaknYc9ioiQbeuM_QbNg";
+var npsAPIKey = "NY4tbVheCsm7Lqu2d87KRiybr7CcRPaAERNqOpKA";
 var mapEl = document.getElementById('park-map');
 var parkContainer = document.getElementById('park-container');
 var states = document.getElementById('states');
@@ -55,7 +55,7 @@ var getMapImgSrc = function (mapData) {
   if (mapData.longitude === "" || mapData.latitude === "") {
     return "https://www.knowitall.org/sites/default/files/styles/assets_detail/public/2022-03/DVQECyCX0AEHo0r.jpg.webp?itok=q0bWWVxf";
   }
-  return "https://api.mapbox.com/styles/v1/mapbox/streets-v12/static/" + mapData.longitude + "," + mapData.latitude + ",10,0/400x400?access_token=" + mapboxAPIKey;
+  return "https://api.mapbox.com/styles/v1/mapbox/streets-v12/static/" + mapData.longitude + "," + mapData.latitude + ",10,0/400x400?access_token=" + ${{ secrets.MAP_API_KEY }};
 };
 
 // Creates the state name headers for the search results
