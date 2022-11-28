@@ -2,8 +2,8 @@ var selectInstances;
 var stateInput;
 var stateSearchEl = document.getElementById('state-name');
 var searchButtonEl = document.querySelector('#parksearchbtn');
-var mapboxAPIKey = apiKey.mapboxAPIKey
-var npsAPIKey = apiKey.npsAPIKey
+var mapboxAPIKey = secrets.MAP_API_KEY
+var npsAPIKey = secrets.NPS_API_KEY
 var mapEl = document.getElementById('park-map');
 var parkContainer = document.getElementById('park-container');
 var states = document.getElementById('states');
