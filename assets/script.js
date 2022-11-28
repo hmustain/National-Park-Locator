@@ -61,7 +61,7 @@ var getMapImgSrc = function (mapData) {
 
 // Creates the state name headers for the search results
 var createHeaders = function (parkData) {
-
+  
     var parkHeading = document.createElement('h2');
     parkHeading.textContent = "State: " + parkData.data[i].addresses[0].stateCode;
     parkHeading.setAttribute('style', 'text-align: center')
