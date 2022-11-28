@@ -29,15 +29,14 @@ body {
   transform: translate(-50%, -50%);
   font-size: 500%;
   color: var(--primary);
-  /* border-bottom: 3px solid var(--primary); */
 }
 
 
 .header img {
-    opacity: 0.80;
-    width: 100%;
-    height: 500px;
-    border-bottom: 3px solid black;
+  opacity: 0.80;
+  width: 100%;
+  height: 500px;
+  border-bottom: 3px solid black;
 }
 
 .select-wrapper input.select-dropdown {
@@ -61,7 +60,6 @@ body {
   border-radius: calc(0.18rem - 1px) calc(0.18rem - 1px) 0 0;
   text-align: center;
   font-size: 200%;
-  /* width: 100%; */
 }
 
 .card-body {
@@ -79,7 +77,6 @@ body {
 
 #state-name {
   width: 100%;
-  /* padding: 3%; */
   margin: 5px 0;
   font-size: 1.2rem;
   border: 2px solid var(--primary);
@@ -90,7 +87,6 @@ body {
 .btn {
   font-size: 1.3rem;
   text-decoration: none;
-  /* padding: 6px 5px; */
   width: 100%;
   display: block;
   margin: 10px 0;
@@ -103,10 +99,9 @@ body {
   transform: translate(-1px, -1px);
 }
 
-.btn::after{
+.btn::after {
   font-size: 1.3rem;
   text-decoration: none;
-  /* padding: 6px 5px; */
   width: 100%;
   display: block;
   margin: 10px 0;
@@ -127,14 +122,14 @@ body {
   cursor: pointer;
 }
 
-  .btn:active {
-    transform: translateY(4px);
-  }
+.btn:active {
+  transform: translateY(4px);
+}
 
-  
-  .btn-inline {
-    display: inline;
-  }
+
+.btn-inline {
+  display: inline;
+}
 
 .btn-inline {
   display: inline;
@@ -154,8 +149,4 @@ body {
   position: absolute;
   bottom: 0;
   width: 100%;
-}
-
-.row h1 {
-  /* text-align: center; */
 }
