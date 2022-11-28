@@ -31,7 +31,6 @@ body {
   color: var(--primary);
 }
 
-
 .header img {
   opacity: 0.80;
   width: 100%;
@@ -131,14 +130,9 @@ body {
   display: inline;
 }
 
-.btn-inline {
-  display: inline;
-}
-
 #park-name-container {
   background-color: var(--primary);
   color: var(--secondary);
-
 }
 
 .card.xl {

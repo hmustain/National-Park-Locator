@@ -1,4 +1,10 @@
 var selectInstances;
+
+document.addEventListener('DOMContentLoaded', function () {
+  var elems = document.querySelectorAll('select');
+  selectInstances = M.FormSelect.init(elems, {});
+ });
+
 var stateInput;
 var stateSearchEl = document.getElementById('state-name');
 var searchButtonEl = document.querySelector('#parksearchbtn');
@@ -7,11 +13,6 @@ var npsAPIKey = secrets.NPS_API_KEY
 var mapEl = document.getElementById('park-map');
 var parkContainer = document.getElementById('park-container');
 var states = document.getElementById('states');
-
-document.addEventListener('DOMContentLoaded', function () {
-  var elems = document.querySelectorAll('select');
-  selectInstances = M.FormSelect.init(elems, {});
- });
 
 // Gathers users search selection
 var searchSubmit = function (event) {
