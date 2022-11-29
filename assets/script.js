@@ -1,22 +1,26 @@
 var selectInstances;
-var stateInput;
-var stateSearchEl = document.getElementById('state-name');
-var searchButtonEl = document.querySelector('#parksearchbtn');
-var mapboxAPIKey = secrets.MAP_API_KEY
-var npsAPIKey = secrets.NPS_API_KEY
-var mapEl = document.getElementById('park-map');
-var parkContainer = document.getElementById('park-container');
-var states = document.getElementById('states');
 
 document.addEventListener('DOMContentLoaded', function () {
   var elems = document.querySelectorAll('select');
   selectInstances = M.FormSelect.init(elems, {});
  });
 
+var stateInput;
+var stateSearchEl = document.getElementById('state-name');
+var searchButtonEl = document.querySelector('#parksearchbtn');
+var mapboxAPIKey = "pk.eyJ1IjoiaG11c3RhaW4iLCJhIjoiY2xhajR1ODl2MDlhZzNybGY0aTU5emp0ZCJ9.2qOaknYc9ioiQbeuM_QbNg";
+var npsAPIKey = "NY4tbVheCsm7Lqu2d87KRiybr7CcRPaAERNqOpKA";
+var mapEl = document.getElementById('park-map');
+var parkContainer = document.getElementById('park-container');
+var states = document.getElementById('states');
+
+
+
 // Gathers users search selection
 var searchSubmit = function (event) {
   event.preventDefault();
   var selectedStates = selectInstances[0].getSelectedValues();
+  parkContainer.textContent = "";
   console.log(selectedStates);
 
   for (i = 0; i < selectedStates.length; i++) {
