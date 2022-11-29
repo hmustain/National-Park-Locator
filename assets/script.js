@@ -61,9 +61,10 @@ var getMapImgSrc = function (mapData) {
 
 // Creates the state name headers for the search results
 var createHeaders = function (parkData) {
-  
+   var stateSelect = selectInstances[0].getSelectedValues();
+   console.log(stateSelect)
     var parkHeading = document.createElement('h2');
-    parkHeading.textContent = "State: " + parkData.data[i].addresses[0].stateCode;
+    parkHeading.textContent = "State: " + stateSelect[0].toUpperCase();
     parkHeading.setAttribute('style', 'text-align: center')
     parkContainer.appendChild(parkHeading);
 };
