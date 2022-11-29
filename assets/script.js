@@ -1,9 +1,10 @@
 var selectInstances;
 
 document.addEventListener('DOMContentLoaded', function () {
-  elems = document.querySelectorAll('select');
+  var elems = document.querySelectorAll('select');
   selectInstances = M.FormSelect.init(elems, {});
- });
+});
+
 
 var stateInput;
 var stateSearchEl = document.getElementById('state-name');
@@ -13,8 +14,6 @@ var npsAPIKey = "NY4tbVheCsm7Lqu2d87KRiybr7CcRPaAERNqOpKA";
 var mapEl = document.getElementById('park-map');
 var parkContainer = document.getElementById('park-container');
 var states = document.getElementById('states');
-
-
 
 // Gathers users search selection
 var searchSubmit = function (event) {
@@ -80,6 +79,13 @@ var createParkCard = function (parkData) {
     var divRow = document.createElement('div');
     divRow.classList = 'row';
     parkContainer.appendChild(divRow);
+
+    // Hunter- trying to get state headings to appear above the first cards
+    // var parkHeading = document.createElement('h1');
+    // parkHeading.classList = 'row';
+    // parkHeading.textContent = "State: " + parkData.data[i].addresses[0].stateCode;
+    // parkHeading.setAttribute('style', 'text-align: center')
+    // parkContainer.appendChild(parkHeading);
 
     // Map Cards
     var divMapCol = document.createElement('div');
