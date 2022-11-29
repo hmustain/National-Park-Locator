@@ -19,6 +19,7 @@ var states = document.getElementById('states');
 var searchSubmit = function (event) {
   event.preventDefault();
   var selectedStates = selectInstances[0].getSelectedValues();
+  parkContainer.textContent = "";
   console.log(selectedStates);
 
   for (i = 0; i < selectedStates.length; i++) {
