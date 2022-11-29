@@ -5,7 +5,6 @@ document.addEventListener('DOMContentLoaded', function () {
   selectInstances = M.FormSelect.init(elems, {});
 });
 
-
 var stateInput;
 var stateSearchEl = document.getElementById('state-name');
 var searchButtonEl = document.querySelector('#parksearchbtn');
@@ -57,7 +56,7 @@ var getMapImgSrc = function (mapData) {
   if (mapData.longitude === "" || mapData.latitude === "") {
     return "https://www.knowitall.org/sites/default/files/styles/assets_detail/public/2022-03/DVQECyCX0AEHo0r.jpg.webp?itok=q0bWWVxf";
   }
-  return "https://api.mapbox.com/styles/v1/mapbox/streets-v12/static/" + mapData.longitude + "," + mapData.latitude + ",10,0/400x400?access_token=" + mapboxAPIKey;
+  return "https://api.mapbox.com/styles/v1/mapbox/streets-v11/static/pin-s-p+228b22(" + mapData.longitude + "," + mapData.latitude + ")/" + mapData.longitude + "," + mapData.latitude + ",14/400x400?access_token=" + mapboxAPIKey;
 };
 
 // Creates the state name headers for the search results
