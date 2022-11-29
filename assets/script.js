@@ -1,7 +1,7 @@
 var selectInstances;
 
 document.addEventListener('DOMContentLoaded', function () {
-  var elems = document.querySelectorAll('select');
+  elems = document.querySelectorAll('select');
   selectInstances = M.FormSelect.init(elems, {});
  });
 
